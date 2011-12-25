@@ -140,10 +140,6 @@ function template($template, array $vars = array()) {
         //Hangi element?
         el: $('#entries'),
 
-        sync: function() {
-            console.log(arguments);
-        },
-
         //constructor
         initialize: function() {
 
