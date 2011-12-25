@@ -1,1 +1,13 @@
-This file was created by JetBrains PhpStorm 3.0 for binding GitHub repository
+Backbone.js Presentation and The Tutorial (Turkish Language, with PHP)
+
+v1 Directory: The oldest way to create a Guestbook application.
+ - There is no Javascript power used.
+
+v2 Directory: Invention of the AJAX.
+ - Ajax has an advantage to make web easier, but not "complete easy".
+
+v3 Directory: Invention of the JSON.
+ - Reducing traffic, inventing hashtags to share links, but still not completed.
+
+v4 Directory: Invention of the Javascript MVCs.
+ - Back-end MVCs get popular. HTML5 is the power. And front-end needed a powerful framework.
