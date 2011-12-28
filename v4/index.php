@@ -152,10 +152,14 @@ function template($template, array $vars = array()) {
             //Collection topluca set edildiğinde tetiklenecek. fetch methodu reset'i tetikler.
             App.Entries.bind('reset', this.addAllEntries, this);
 
+            //Entries'i temizle ve yeniden modelle.
+            this.el.html('');
+            App.Entries.fetch({add: true});
+
             //Verileri her 10 saniyede bir güncelle.
             window.setInterval(function() {
-                App.Entries.fetch();
-            }, 10000);
+                App.Entries.fetch({add: true});
+            }, 2000);
         },
 
         //Her bir view'i prepend eder.
@@ -174,8 +178,6 @@ function template($template, array $vars = array()) {
 
         //Tüm entryleri topluca ekle.
         addAllEntries: function() {
-
-            this.el.html('');
             //Tüm entryleri ekliyor.
             App.Entries.each(this.addEntry, this);
         }
@@ -218,7 +220,18 @@ function template($template, array $vars = array()) {
         model: App.Entry,
 
         //Kendisini ajax.php üzerinden günceller.
-        url: 'ajax.php'
+        url: 'ajax.php',
+
+        //Bir modelden yalnızca bir adet olması için gerekli.
+        add : function(models, options) {
+            var newEntries = [];
+            _(models).each(function(model) {
+                if (_(this.get(model.id)).isUndefined()) {
+                    newEntries.push(model);
+                }
+            }, this);
+            return Backbone.Collection.prototype.add.call(this, newEntries, options);
+        }
     });
 
     //Form'un view'ı
